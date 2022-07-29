@@ -1,3 +1,25 @@
+# Librerías necesarias
+
+## `Styled Components`
+
+### with npm
+  `npm install --save styled-components`
+
+### with yarn
+  `yarn add styled-components`
+  
+Disponible en: https://styled-components.com/docs/basics#installation
+  
+## `React Icons`
+
+### with npm
+  `npm install react-icons --saves`
+  
+Disponible en: https://react-icons.github.io/react-icons/
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
