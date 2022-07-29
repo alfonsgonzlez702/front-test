@@ -1,7 +1,7 @@
 import './App.css';
 import { Botoncito } from './elements/Formulario';
 import ModalAcceso from './components/ModalAcceso';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PieAcceso from './components/PieAcceso';
 import { Switcher } from './components/Switcher';
 
@@ -10,6 +10,12 @@ import { Switcher } from './components/Switcher';
 function App() {
   const [modalOn, setModalOn] = useState(false);
   const [foot, setFoot] = useState('logIn')
+
+  const [usuario, setUsuario] = useState({});
+
+  useEffect(() => {
+    console.log(usuario);
+  }, [usuario]);
   
   return (
     <div className="App">
@@ -17,12 +23,17 @@ function App() {
         <Botoncito
           onClick={()=>{setModalOn(true);setFoot('logIn')}}
         >
-          Ingresa
+          Ingresar
         </Botoncito>
         <ModalAcceso 
           modalOn = {modalOn}
           setModalOn={setModalOn}
-          content={<Switcher foot={foot} />}
+          content={<Switcher 
+            foot={foot} 
+            setFoot={setFoot}
+            pack={usuario}
+            setPack={setUsuario}
+          />}
           foot={<PieAcceso foot={foot} setFoot={setFoot}/>}
         />
       

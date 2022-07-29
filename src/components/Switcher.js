@@ -2,14 +2,14 @@ import React from 'react'
 import LogIn from './LogIn'
 import SignIn from './SignIn'
 
-export const Switcher = ({foot}) => {
+export const Switcher = ({pack, setPack, foot, setFoot}) => {
   return (
     <>
         {
             foot === 'logIn' ?
-            <LogIn />
+            <LogIn pack={pack} setPack={setPack} />
                 :
-            <SignIn />
+            <SignIn pack={pack} setPack={setPack} setFoot={setFoot} />
         }
         
     </>

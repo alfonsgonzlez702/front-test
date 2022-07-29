@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { AiFillCheckCircle } from 'react-icons/ai'
+import styled, { css } from 'styled-components'
+import { AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai'
 
 const colores = {
     primary : "#3083ff",
@@ -141,21 +141,7 @@ const GroupInput = styled.div`
     height: 2rem;
     align-items: center;
     margin-top: 1rem;
-    margin-bottom: 1rem;
-
-    input {
-        height: 100%;
-        width: 100%;
-        font-size: 1rem;
-        padding: 6px 3rem 6px 6px;
-        border: 1px solid rgb(230, 229, 229);
-    }
-
-    input:focus {
-        border: 3px solid ${colores.smBlue};
-        outline: none;
-        box-shadow:3px 0px 30px rgba(163,163,163,0.4)
-    }
+    margin-bottom: .5rem;
 
     button {
         height: 100%;
@@ -170,6 +156,31 @@ const GroupInput = styled.div`
         cursor: pointer;
     }
 
+    
+
+`;
+
+const Input = styled.input`
+    height: 100%;
+    width: 100%;
+    font-size: 1rem;
+    padding: 6px 3rem 6px 6px;
+    border: 1px solid rgb(230, 229, 229);
+
+    &:focus {
+        border: 3px solid ${colores.smBlue};
+        outline: none;
+        box-shadow:3px 0px 30px rgba(163,163,163,0.4)
+    }
+
+    ${props => props.estado === 'true' && css`
+        border: 3px solid ${colores.check};
+    `}
+
+    ${props => props.estado === 'false' && css`
+        border: 3px solid ${colores.error} !important;
+    `}
+
 `;
 
 const ValidF = styled(AiFillCheckCircle)`
@@ -180,6 +191,46 @@ const ValidF = styled(AiFillCheckCircle)`
     font-size: 1.5rem;
     opacity: 0;
     color: ${colores.check};
+
+    ${props => props.estado === 'true' && css`
+        opacity: 0.5;
+    `};
+
+    ${props => props.estado === 'false' && css`
+        opacity: 0;
+    `};
+`;
+
+const InvalidF = styled(AiFillCloseCircle)`
+    position: absolute;
+    right: 10px;
+    bottom: .2rem;
+    z-index: 100;
+    font-size: 1.5rem;
+    opacity: 0;
+    color: ${colores.error};
+
+    ${props => props.estado === 'true' && css`
+        opacity: 0;
+    `};
+
+    ${props => props.estado === 'false' && css`
+        opacity: 0.5;
+    `};
+`;
+
+const MsgError = styled.span`
+    font-size: 12px;
+    color: ${colores.error};
+    opacity: 0;
+    ${props => props.estado === 'true' && css`
+        opacity: 0;
+    `};
+
+    ${props => props.estado === 'false' && css`
+        opacity: 1;
+    `};
+
 `;
 
 
@@ -193,7 +244,9 @@ export {
     TituloM, 
     Form, 
     Envia, 
-    GroupInput, 
-    ValidF, 
-    ValidFP 
+    GroupInput,
+    Input,
+    MsgError,
+    ValidF,
+    InvalidF
 }

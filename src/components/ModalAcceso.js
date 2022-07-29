@@ -1,7 +1,7 @@
 import React from 'react'
 import { CabeceraM, ContenidoM, PieM, Modal, Overlay } from '../elements/Formulario'
 
-const ModalAcceso = ({modalOn, setModalOn, content, foot}) => {
+const ModalAcceso = ({ modalOn, setModalOn, content, foot }) => {
   return (
     <>
     {

@@ -1,14 +1,13 @@
 import React from 'react'
-import { GroupInput, ValidF } from '../elements/Formulario'
+import { GroupInput, Input, ValidF, MsgError, InvalidF } from '../elements/Formulario'
 
-const Field = ({tipo, placehold, name, regEx, value, setValue}) => {
-
+const Field = ({tipo, placehold, name, msg, regEx, value, setValue}) => {
   const valida = () => {
     if(regEx) {
-      if(regEx.test(value)) {
-        console.log('GOOD!')
+      if(regEx.test(value.dato)) {
+        setValue({...value, valido:'true'})
       } else {
-        console.log('GOODN´T')
+        setValue({...value, valido:'false'})
       }
 
     }
@@ -16,20 +15,27 @@ const Field = ({tipo, placehold, name, regEx, value, setValue}) => {
   };
 
   return (
-    <GroupInput>
-        <input
-            type={tipo}
-            placeholder={placehold}
-            name={name}
-            value={value}
-            onChange={(e) => {
-              setValue(e.target.value)
-            }}
-            onKeyUp={valida}
-            onBlur={valida}
-        />
-        <ValidF />
-    </GroupInput>
+    <>
+      <GroupInput>
+          <Input
+              type={tipo}
+              placeholder={placehold}
+              name={name}
+              value={value.dato}
+              onChange={(e) => {
+                setValue({...value, dato:e.target.value})
+              }}
+              onKeyUp={valida}
+              onBlur={valida}
+              estado={value.valido}
+          />
+          <ValidF estado={value.valido} />
+          <InvalidF estado={value.valido} />
+      </GroupInput>
+      <MsgError estado={value.valido}>
+        {msg}
+      </MsgError>
+    </>
   )
 }
 
